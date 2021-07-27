@@ -7,3 +7,4 @@
 - Docker
 - Kubernetes
 - Redis
+- MongoDB
