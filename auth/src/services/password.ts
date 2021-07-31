@@ -17,9 +17,5 @@ export class Password {
 
         return buffer.toString('hex') === hashedPassword
     }
-
-    // print() {
-
-    // }
 }
 
