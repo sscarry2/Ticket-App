@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 import { app } from '../app'
 
 let mongo: any
-beforeAll( async () => {
-  const mongo = new MongoMemoryServer();
+beforeAll(async () => {
+  process.env.JWT_KEY = 'asdfbvkvvnel'
+
+  mongo = new MongoMemoryServer();
   const mongoUri = await mongo.getUri();
   
   await mongoose.connect(mongoUri, {
@@ -13,7 +15,7 @@ beforeAll( async () => {
   });
 })
 
-beforeEach( async () => {
+beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
@@ -21,7 +23,7 @@ beforeEach( async () => {
   }
 })
 
-afterAll( async () => {
+afterAll(async () => {
     await mongo.stop();
     await mongoose.connection.close()
 })
