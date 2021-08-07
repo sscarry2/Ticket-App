@@ -4,18 +4,23 @@ import axios from "axios";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await axios.post(
-      "https://ticketing.dev/api/users/signup",
-      {
-        email,
-        password,
-      }
-    );
-
-    console.log(response);
+    try {
+      const response = await axios.post(
+        "https://ticketing.dev/api/users/signup",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      setErrors(error.response.data.errors);
+    }
   };
   return (
     <form onSubmit={onSubmit}>
@@ -37,6 +42,16 @@ const SignUp = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
+      {errors.length > 0 && (
+        <div className="alert alert-danger">
+          <h4>Ooops...</h4>
+          <ul className="my-0">
+            {errors.map((err) => (
+              <li key={err.message}>{err.message}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <button className="btn btn-primary">Sign Up</button>
     </form>
   );
