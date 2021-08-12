@@ -4,8 +4,7 @@ import jwt from 'jsonwebtoken'
 
 import { Password } from '../services/password'
 import { User } from '../models/user'
-import { validateRequest } from '../middlewares/validateRequest'
-import { BadRequestError } from '../errors/bad-request-error'
+import { validateRequest, BadRequestError } from '@nstickers/common'
 
 const router = express.Router()
 

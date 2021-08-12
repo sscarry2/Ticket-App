@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nstickers/common": "^1.0.7",
     "@types/cookie-session": "^2.0.43",
     "@types/express": "^4.17.13",
     "@types/jest": "^26.0.24",
