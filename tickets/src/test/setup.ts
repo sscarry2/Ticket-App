@@ -37,7 +37,7 @@ afterAll(async () => {
 global.signin = () => {
   // Build a JWT payload. { id, email }
   const payload = {
-    id: 'rfseiry239',
+    id: new mongoose.Types.ObjectId().toHexString(),
     email: 'test@test.com'
   }
 
@@ -54,5 +54,5 @@ global.signin = () => {
   const base64 = Buffer.from(sessionJSON).toString('base64')
 
   // return string thats the cookie with the encoded data
-  return `express:sess=${base64}`
+  return [`express:sess=${base64}`]
 }
