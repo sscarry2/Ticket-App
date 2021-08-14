@@ -3,11 +3,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import { app } from '../app';
 declare global {
-  namespace NodeJS {
-    interface Global {
-      signin(): Promise<string[]>
-    }
-  }
+  var signin: () => Promise<string[]>
 }
 
 let mongo: any
@@ -49,5 +45,5 @@ global.signin = async () => {
   
   const cookie = response.get('Set-Cookie')
 
-
+  return cookie
 }
